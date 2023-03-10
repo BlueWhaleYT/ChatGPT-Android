@@ -56,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
     private static ActivityMainBinding binding;
     private static OpenAIClient openAIClient;
 
-    private final String OPENAI_URL = "https://api.openai.com/v1/completions";
-    private final String OPENAI_MODEL = "text-davinci-003";
-
     private List<Message> messages;
     private static MessageAdapter adapter;
 
@@ -175,8 +172,8 @@ public class MainActivity extends AppCompatActivity {
             binding.btnSend.setVisibility(View.VISIBLE);
             binding.rvChatList.setVisibility(View.VISIBLE);
             openAIClient = new OpenAIClient();
-            openAIClient.setModel(OPENAI_MODEL);
-            openAIClient.setApiUrl(OPENAI_URL);
+            openAIClient.setModel(PreferencesManager.getOpenAIModel());
+            openAIClient.setApiUrl(getAPIURL());
             openAIClient.setApiKey(PreferencesManager.getOpenAIAPIKey());
             openAIClient.setMaxTokens(Double.parseDouble(PreferencesManager.getOpenAIMaxTokens()));
             openAIClient.setTemperature(Double.parseDouble(PreferencesManager.getOpenAITemperature()));
@@ -288,6 +285,19 @@ public class MainActivity extends AppCompatActivity {
             }
             startActivity(intent);
         }
+    }
+
+    private String getAPIURL() {
+        var url = "";
+        switch (openAIClient.getModel()) {
+            case OpenAIClient.TEXT_DAVINCI_003:
+                url = OpenAIClient.COMPLETION_URL;
+                break;
+            case OpenAIClient.GPT_3_5_TURBO:
+                url = OpenAIClient.CHAT_COMPLETION_URL;
+                break;
+        }
+        return url;
     }
 
 }

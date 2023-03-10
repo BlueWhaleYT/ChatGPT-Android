@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="model">
+        <item>@string/default_openai_model</item>
+        <item>gpt-3.5-turbo</item>
+    </string-array>
+</resources>

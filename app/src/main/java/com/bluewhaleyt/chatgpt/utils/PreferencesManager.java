@@ -7,6 +7,7 @@ import androidx.preference.PreferenceManager;
 
 import com.bluewhaleyt.WhaleUtilsApplication;
 import com.bluewhaleyt.chatgpt.App;
+import com.bluewhaleyt.chatgpt.R;
 
 public class PreferencesManager {
 
@@ -14,6 +15,10 @@ public class PreferencesManager {
 
     public static String getOpenAIAPIKey() {
         return getPrefs().getString("pref_openai_api_key", "");
+    }
+
+    public static String getOpenAIModel() {
+        return getPrefs().getString("pref_openai_model", App.getContext().getString(R.string.default_openai_model));
     }
 
     public static String getOpenAITemperature() {

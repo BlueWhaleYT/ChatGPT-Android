@@ -3,6 +3,7 @@ package com.bluewhaleyt.chatgpt.utils;
 import android.content.Context;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,6 +22,11 @@ import okhttp3.Response;
 public class OpenAIClient {
 
     private final MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+    public static final String TEXT_DAVINCI_003 = "text-davinci-003";
+    public static final String GPT_3_5_TURBO = "gpt-3.5-turbo";
+
+    public static final String COMPLETION_URL = "https://api.openai.com/v1/completions";
+    public static final String CHAT_COMPLETION_URL = "https://api.openai.com/v1/chat/completions";
 
     private Context context;
     private OkHttpClient client;
@@ -78,7 +84,11 @@ public class OpenAIClient {
 
     public void setModel(String model) { this.model = model; }
 
+    public String getModel() { return model; }
+
     public void setPrompt(String prompt) { this.prompt = prompt; }
+
+    public void setMessage(String prompt) { setPrompt(prompt); }
 
     public void setMaxTokens(double maxTokens) { this.maxTokens = maxTokens; }
 
@@ -89,10 +99,22 @@ public class OpenAIClient {
     public JSONObject getSettings() throws JSONException {
         var json = new JSONObject();
         json.put("model", model);
-        json.put("prompt", prompt);
         json.put("max_tokens", maxTokens);
         json.put("temperature", temperature);
-        json.put("echo", isEcho);
+
+        if (model.equals(TEXT_DAVINCI_003)) {
+            json.put("prompt", prompt);
+            json.put("echo", isEcho);
+        }
+
+        else if (model.equals(GPT_3_5_TURBO)) {
+            var jsonArray = new JSONArray();
+            var jsonMessageObj = new JSONObject();
+            jsonMessageObj.put("role", "user");
+            jsonMessageObj.put("content", prompt);
+            jsonArray.put(jsonMessageObj);
+            json.put("messages", jsonArray);
+        }
         return json;
     }
 
@@ -110,7 +132,15 @@ public class OpenAIClient {
     public String parseResponse(String responseBody) throws JSONException {
         var jsonObject = new JSONObject(responseBody);
         var jsonArray = jsonObject.getJSONArray("choices");
-        var resultText = jsonArray.getJSONObject(0).getString("text");
+        String resultText = null;
+        if (model.equals(TEXT_DAVINCI_003)) {
+            resultText = jsonArray.getJSONObject(0).getString("text");
+        }
+
+        else if (model.equals(GPT_3_5_TURBO)) {
+            var jsonMessageObj = jsonArray.getJSONObject(0).getJSONObject("message");
+            resultText = jsonMessageObj.getString("content");
+        }
         return resultText.trim();
     }
 

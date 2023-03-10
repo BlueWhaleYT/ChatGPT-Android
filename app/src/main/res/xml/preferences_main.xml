@@ -12,14 +12,22 @@
         <EditTextPreference
             app:key="pref_openai_api_key"
             app:title="@string/api_key"
-            app:icon="@drawable/ic_baseline_key_24"
-            app:useSimpleSummaryProvider="true"/>
+            app:icon="@drawable/ic_baseline_key_24"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
         app:title="@string/settings"
         app:iconSpaceReserved="false">
+
+        <ListPreference
+            app:key="pref_openai_model"
+            app:title="@string/model"
+            app:icon="@drawable/ic_baseline_construction_24"
+            app:useSimpleSummaryProvider="true"
+            app:entries="@array/model"
+            app:entryValues="@array/model"
+            app:defaultValue="@string/default_openai_model"/>
 
         <EditTextPreference
             app:key="pref_openai_temperature"

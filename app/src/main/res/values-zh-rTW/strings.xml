@@ -23,4 +23,5 @@
     <string name="max_tokens">最大權標數目</string>
     <string name="api_key_missing">API 金鑰尚未設置，請到設定設置。</string>
     <string name="echo">迴聲文本</string>
+    <string name="model">模型</string>
 </resources>
