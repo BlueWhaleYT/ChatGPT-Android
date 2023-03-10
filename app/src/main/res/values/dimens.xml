@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fastscroll_bubble_radius">44dp</dimen>
+    <dimen name="fastscroll_bubble_size">30dp</dimen>
+    <dimen name="fastscroll_bubble_textsize">48sp</dimen>
+    <dimen name="fastscroll_bubble_padding">10dp</dimen>
+</resources>

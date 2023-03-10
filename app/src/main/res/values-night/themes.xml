@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ChatGPT" parent="Theme.Material3.DayNight">
+        <item name="android:fontFamily">@font/ubuntu_regular</item>
+
+        <item name="materialAlertDialogTheme">@style/Theme.AlertDialog</item>
+        <item name="alertDialogTheme">@style/Theme.AlertDialog</item>
+        <item name="dialogCornerRadius">28dp</item>
+    </style>
+
+    <style name="Theme.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="dialogCornerRadius">28dp</item>
+        <item name="android:background">?colorSurface</item>
+        <item name="android:windowElevation">@dimen/m3_sys_elevation_level2</item>
+    </style>
+</resources>

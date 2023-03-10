@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="second">秒</string>
+    <string name="min">分鐘</string>
+    <string name="request_time">請求時間</string>
+    <string name="enter_message">輸入訊息</string>
+    <string name="send">發送</string>
+    <string name="view">檢視</string>
+    <string name="view_more">檢視更多</string>
+    <string name="share">分享</string>
+    <string name="clear">清空</string>
+    <string name="you">我</string>
+    <string name="bot">機器人</string>
+    <string name="delete">刪除</string>
+    <string name="settings">設定</string>
+    <string name="api_key">API 金鑰</string>
+    <string name="privacy">隱私</string>
+    <string name="others">其他</string>
+    <string name="timeout">連線逾時</string>
+    <string name="parameters">參數</string>
+    <string name="temperature">文本生成多樣性</string>
+    <string name="max_tokens">最大權標數目</string>
+    <string name="api_key_missing">API 金鑰尚未設置，請到設定設置。</string>
+    <string name="echo">迴聲文本</string>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.bluewhaleyt.component.preferences.TitlePreference
+        app:title="@string/settings" />
+
+    <PreferenceCategory
+        app:title="@string/privacy"
+        app:iconSpaceReserved="false">
+
+        <EditTextPreference
+            app:key="pref_openai_api_key"
+            app:title="@string/api_key"
+            app:icon="@drawable/ic_baseline_key_24"
+            app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/settings"
+        app:iconSpaceReserved="false">
+
+        <EditTextPreference
+            app:key="pref_openai_temperature"
+            app:title="@string/temperature"
+            app:icon="@drawable/ic_outline_auto_awesome_24"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="0"/>
+
+        <EditTextPreference
+            app:key="pref_openai_max_tokens"
+            app:title="@string/max_tokens"
+            app:icon="@drawable/ic_outline_token_24"
+            app:useSimpleSummaryProvider="true"
+            app:defaultValue="4000"/>
+
+        <com.bluewhaleyt.component.preferences.material3.Material3SwitchPreference
+            app:key="pref_openai_echo"
+            app:title="@string/echo"
+            app:icon="@drawable/ic_outline_textsms_24"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/others"
+        app:iconSpaceReserved="false">
+
+        <EditTextPreference
+            app:key="pref_okhttp_timeout"
+            app:title="@string/timeout"
+            app:icon="@drawable/ic_baseline_access_time_24"
+            app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name" translatable="false">ChatGPT</string>
+
+    <string name="second">s</string>
+    <string name="min">min</string>
+    <string name="request_time">Request time</string>
+    <string name="enter_message">Enter message</string>
+    <string name="send">Send</string>
+    <string name="view">View</string>
+    <string name="view_more">View more</string>
+    <string name="share">Share</string>
+    <string name="clear">Clear</string>
+    <string name="you">You</string>
+    <string name="bot">Bot</string>
+    <string name="delete">Delete</string>
+    <string name="settings">Settings</string>
+    <string name="api_key">API Key</string>
+    <string name="privacy">Privacy</string>
+    <string name="others">Others</string>
+    <string name="timeout">Timeout</string>
+    <string name="parameters">Parameters</string>
+    <string name="temperature">Temperature</string>
+    <string name="max_tokens">Max Tokens</string>
+    <string name="api_key_missing">API Key is missing, please go to Settings.</string>
+    <string name="echo">Echo</string>
+</resources>
