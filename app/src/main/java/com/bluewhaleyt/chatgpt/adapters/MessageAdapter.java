@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bluewhaleyt.chatgpt.MainActivity;
@@ -38,8 +39,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     private static List<Message> messages;
     private ThreadPoolExecutor executor;
 
-    public MessageAdapter(List<Message> messages) {
+    private MainActivity mainActivity;
+
+    public MessageAdapter(List<Message> messages, MainActivity activity) {
         this.messages = messages;
+        this.mainActivity = activity;
+        this.
         executor = new ThreadPoolExecutor(
                 1,
                 1,
@@ -81,6 +86,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         holder.btnView.setOnClickListener(v -> viewMarkdown(context, message.getMessage()));
         holder.btnShare.setOnClickListener(v -> shareMessage(context, message.getMessage()));
+        holder.btnTellMeMore.setOnClickListener(v -> mainActivity.tellMeMore());
 
         displaySentTime(holder, message);
 
@@ -168,7 +174,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         LinearLayout layoutMessageContainer, layoutMessageBox, layoutFooter;
         MarkedView mvMessage;
         ImageView ivAvatar;
-        Button btnView, btnShare;
+        Button btnView, btnShare, btnTellMeMore;
         TextView tvTime;
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -180,6 +186,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             ivAvatar = itemView.findViewById(R.id.iv_avatar);
             btnView = itemView.findViewById(R.id.btn_view);
             btnShare = itemView.findViewById(R.id.btn_share);
+            btnTellMeMore = itemView.findViewById(R.id.btn_tell_me_more);
             tvTime = itemView.findViewById(R.id.tv_time);
         }
     }

@@ -1,13 +1,13 @@
 # ChatGPT
 
-> **Note**: This may not have the same result of ChatGPT Official.
+> **Note**: This may not have the same result of what you exactly asked on ChatGPT Official.
 
-This is an experimental android app enabling users to chat with AI via OpenAI. It supports past conversations (context linking), but it has the limit from the max tokens you've set.
+This is an experimental android app enabling users to chat with AI via OpenAI.
 
 ## Supported models
 
-- text-davinci-003 (Recommended)
-- gpt-3.5-turbo (used by ChatGPT)
+- text-davinci-003: not recommended for long context.
+- gpt-3.5-turbo: used by ChatGPT, recommended for long context and has adjustments on tokens streaming.
 
 ## Get Started
 

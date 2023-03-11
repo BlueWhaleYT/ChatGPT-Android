@@ -10,6 +10,7 @@
     <string name="view_more">檢視更多</string>
     <string name="share">分享</string>
     <string name="clear">清空</string>
+    <string name="clear_desc">清空對話脈絡，接下來的對話主題將會重置。</string>
     <string name="you">我</string>
     <string name="bot">機器人</string>
     <string name="delete">刪除</string>
@@ -24,4 +25,5 @@
     <string name="api_key_missing">API 金鑰尚未設置，請到設定設置。</string>
     <string name="echo">迴聲文本</string>
     <string name="model">模型</string>
+    <string name="tell_me_more">告訴我更多</string>
 </resources>

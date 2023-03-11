@@ -11,6 +11,7 @@
     <string name="view_more">View more</string>
     <string name="share">Share</string>
     <string name="clear">Clear</string>
+    <string name="clear_desc">Clear the context and reset the current topic.</string>
     <string name="you">You</string>
     <string name="bot">Bot</string>
     <string name="delete">Delete</string>
@@ -25,4 +26,5 @@
     <string name="api_key_missing">API Key is missing, please go to Settings.</string>
     <string name="echo">Echo</string>
     <string name="model">Model</string>
+    <string name="tell_me_more">Tell me more</string>
 </resources>

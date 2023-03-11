@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupChatList() {
         var rvList = binding.rvChatList;
         messages = new ArrayList<>();
-        adapter = new MessageAdapter(messages);
+        adapter = new MessageAdapter(messages, this);
 
         CommonUtil.waitForTimeThenDo(3000, () -> {
             binding.layoutRvContainer.setVisibility(View.VISIBLE);
@@ -167,7 +167,8 @@ public class MainActivity extends AppCompatActivity {
             openAIClient.setModel(PreferencesManager.getOpenAIModel());
             openAIClient.setApiUrl(getAPIURL());
             openAIClient.setApiKey(PreferencesManager.getOpenAIAPIKey());
-            openAIClient.setMaxTokensEnabled(false);
+            var enable = openAIClient.getModel().equals(OpenAIClient.TEXT_DAVINCI_003);
+            openAIClient.setMaxTokensEnabled(enable);
             openAIClient.setMaxTokens(Double.parseDouble(PreferencesManager.getOpenAIMaxTokens()));
             openAIClient.setTemperature(Double.parseDouble(PreferencesManager.getOpenAITemperature()));
             openAIClient.setEcho(PreferencesManager.isOpenAIEcho());
@@ -218,11 +219,11 @@ public class MainActivity extends AppCompatActivity {
             updateIsShowSpacer();
         });
 
-        if (!isSentByUser) {
-            var notify = new NotificationUtil(this);
-            var intent = new Intent(this, MainActivity.class);
-            notify.showNotification(getString(R.string.bot), message, intent);
-        }
+//        if (!isSentByUser) {
+//            var notify = new NotificationUtil(this);
+//            var intent = new Intent(this, MainActivity.class);
+//            notify.showNotification(getString(R.string.bot), message, intent);
+//        }
     }
 
     private void removeMessage(int position) {
@@ -255,10 +256,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clearAllChats() {
-        adapter.removeAllMessages(this);
-        adapter = new MessageAdapter(new ArrayList<>());
-        binding.rvChatList.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        var dialog = new DialogUtil(this, getString(R.string.clear));
+        dialog.setMessage(getString(R.string.clear_desc));
+        dialog.setPositiveButton(android.R.string.ok, (d, i) -> {
+            adapter.removeAllMessages(this);
+            adapter = new MessageAdapter(new ArrayList<>(), this);
+            binding.rvChatList.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            initialize();
+        });
+        dialog.setNegativeButton(android.R.string.cancel, null);
+        dialog.build();
     }
 
     private void requestNotificationPermission() {
@@ -291,6 +299,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return url;
+    }
+
+    public void tellMeMore() {
+        binding.etMessage.setText(R.string.tell_me_more);
+        sendMessage();
     }
 
 }
