@@ -35,7 +35,7 @@ public class OpenAIClient {
 
     private double maxTokens, temperature;
     private String apiKey , apiUrl, model, prompt;
-    private boolean isEcho;
+    private boolean isMaxTokensEnabled, isEcho;
     private JSONObject parameters;
 
     public OpenAIClient() {
@@ -94,6 +94,8 @@ public class OpenAIClient {
 
     public void setMaxTokens(double maxTokens) { this.maxTokens = maxTokens; }
 
+    public void setMaxTokensEnabled(boolean isMaxTokensEnabled) { this.isMaxTokensEnabled = isMaxTokensEnabled; }
+
     public void setTemperature(double temperature) { this.temperature = temperature; }
 
     public void setEcho(boolean isEcho) { this.isEcho = isEcho; }
@@ -103,7 +105,7 @@ public class OpenAIClient {
     public JSONObject getSettings() throws JSONException {
         var json = new JSONObject();
         json.put("model", model);
-        json.put("max_tokens", maxTokens);
+        if (isMaxTokensEnabled) json.put("max_tokens", maxTokens);
         json.put("temperature", temperature);
 
         if (model.equals(TEXT_DAVINCI_003)) {

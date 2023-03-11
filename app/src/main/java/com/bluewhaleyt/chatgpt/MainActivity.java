@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
             openAIClient.setModel(PreferencesManager.getOpenAIModel());
             openAIClient.setApiUrl(getAPIURL());
             openAIClient.setApiKey(PreferencesManager.getOpenAIAPIKey());
+            openAIClient.setMaxTokensEnabled(false);
             openAIClient.setMaxTokens(Double.parseDouble(PreferencesManager.getOpenAIMaxTokens()));
             openAIClient.setTemperature(Double.parseDouble(PreferencesManager.getOpenAITemperature()));
             openAIClient.setEcho(PreferencesManager.isOpenAIEcho());
