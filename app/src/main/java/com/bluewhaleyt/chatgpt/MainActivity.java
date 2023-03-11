@@ -80,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menu_my_files:
+                IntentUtil.intent(this, MyFilesActivity.class);
+                break;
             case R.id.menu_settings:
                 IntentUtil.intent(this, SettingsActivity.class);
                 break;

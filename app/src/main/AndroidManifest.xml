@@ -3,13 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    
-<!--    <uses-permission android:name="android.permission.GET_APP_OPS_STATS" />-->
-<!--    <uses-permission android:name="android.permission.WRITE_SETTINGS" />-->
 
     <application
         android:name=".App"
@@ -24,8 +20,8 @@
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,10 +32,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
+        <activity android:name=".MyFilesActivity" />
         <activity android:name=".SettingsActivity" />
 
-        <receiver android:name=".NotificationReceiver"
+        <receiver
+            android:name=".NotificationReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
