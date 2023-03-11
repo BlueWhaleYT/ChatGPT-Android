@@ -1,39 +1,32 @@
-package com.bluewhaleyt.chatgpt;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+package com.bluewhaleyt.chatgpt.ui.activities;
 
 import android.os.Bundle;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.bluewhaleyt.chatgpt.R;
 import com.bluewhaleyt.chatgpt.adapters.FileAdapter;
-import com.bluewhaleyt.chatgpt.databinding.ActivityMainBinding;
 import com.bluewhaleyt.chatgpt.databinding.ActivityMyFilesBinding;
 import com.bluewhaleyt.chatgpt.models.Message;
-import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.filemanagement.FileUtil;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
-public class MyFilesActivity extends AppCompatActivity {
+public class MyFilesActivity extends BaseActivity {
 
     private ActivityMyFilesBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashDebugger.init(this);
         binding = ActivityMyFilesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initialize();
     }
 
     private void initialize() {
-        CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
-        CommonUtil.setToolBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
-        CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
+        getSupportActionBar().setTitle(R.string.my_files);
 
         setupFileList();
     }

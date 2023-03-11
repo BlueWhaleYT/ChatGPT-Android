@@ -1,4 +1,4 @@
-package com.bluewhaleyt.chatgpt;
+package com.bluewhaleyt.chatgpt.ui.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bluewhaleyt.chatgpt.ui.fragments.preferences.SettingsFragment;
 import com.bluewhaleyt.common.CommonUtil;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,23 +22,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void initialize() {
-
-        CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
-        CommonUtil.setToolBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
-        CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
 
         getSupportFragmentManager()

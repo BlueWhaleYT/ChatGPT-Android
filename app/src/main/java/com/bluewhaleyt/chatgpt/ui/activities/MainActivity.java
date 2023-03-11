@@ -1,21 +1,20 @@
-package com.bluewhaleyt.chatgpt;
+package com.bluewhaleyt.chatgpt.ui.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.bluewhaleyt.chatgpt.R;
 import com.bluewhaleyt.chatgpt.adapters.MessageAdapter;
 import com.bluewhaleyt.chatgpt.databinding.ActivityMainBinding;
 import com.bluewhaleyt.chatgpt.models.Message;
@@ -35,19 +34,17 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static ActivityMainBinding binding;
     private static OpenAIClient openAIClient;
@@ -58,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashDebugger.init(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initialize();
@@ -92,21 +88,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialize() {
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         requestPermission();
 
         setupChatList();
         binding.btnSend.setOnClickListener(v -> sendMessage());
         binding.btnClear.setOnClickListener(v -> clearAllChats());
 
-//        CommonUtil.waitForTimeThenDo(100, () -> {
-//            binding.etMessage.setText("how to make a tic tac toe game in javascript with markdown.");
-//            sendMessage();
-//            return null;
-//        });
-
-        CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
-        CommonUtil.setToolBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
-        CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
         var gd = new GradientDrawable();
         var dynamic = new DynamicColorsUtil(this);
         gd.setColor(dynamic.getColorPrimaryContainer());

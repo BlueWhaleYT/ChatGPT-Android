@@ -1,5 +1,7 @@
 package com.bluewhaleyt.chatgpt.adapters;
 
+import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +11,13 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bluewhaleyt.chatgpt.R;
+import com.bluewhaleyt.chatgpt.databinding.DialogLayoutMarkdownViewBinding;
+import com.bluewhaleyt.chatgpt.ui.activities.CodeViewActivity;
+import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.filemanagement.FileIconUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.File;
 import java.util.List;
@@ -41,16 +47,16 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.ViewHolder> {
         var fileIcon = new FileIconUtil(file.getAbsolutePath(), "");
         fileIcon.bindFileIcon(holder.ivFileIcon);
 
-        var dialog = new DialogUtil(context, file.getName());
-        dialog.setMessage(FileUtil.readFile(file.getAbsolutePath()));
-        dialog.setNeutralButton(android.R.string.ok, null);
-        dialog.create();
-        holder.itemView.setOnClickListener(v -> dialog.show());
+        holder.itemView.setOnClickListener(v -> viewFiles(context, file));
     }
 
     @Override
     public int getItemCount() {
         return fileList.size();
+    }
+
+    private void viewFiles(Context context, File file) {
+        IntentUtil.intentPutString((Activity) context, CodeViewActivity.class, "file_path", file.getAbsolutePath());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

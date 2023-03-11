@@ -31,7 +31,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/user_avatar"
-                    android:scaleType="fitCenter"/>
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal"/>
 
                 <TextView
                     android:id="@+id/tv_time"
@@ -39,8 +40,9 @@
                     android:layout_height="wrap_content"
                     android:text="time"
                     android:textSize="9sp"
+                    android:lineSpacingExtra="4dp"
                     android:layout_marginTop="5dp"
-                    android:layout_gravity="center_horizontal"/>
+                    android:gravity="center_horizontal"/>
 
             </LinearLayout>
 

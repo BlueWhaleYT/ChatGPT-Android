@@ -53,7 +53,7 @@
                 android:layout_marginBottom="10dp"
                 app:bubbleColor="?colorSecondaryContainer"
                 app:bubbleTextColor="?colorOnSecondaryContainer"
-                app:handleColor="?colorOnSurfaceVariant"
+                app:handleColor="?colorSurfaceVariant"
                 app:bubbleTextSize="12sp"/>
 
         </FrameLayout>

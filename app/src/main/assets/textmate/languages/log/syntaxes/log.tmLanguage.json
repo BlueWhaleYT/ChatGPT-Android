@@ -1,0 +1,36 @@
+{
+  "information_for_contributors": [
+    "This file has been converted from https://github.com/emilast/vscode-logfile-highlighter/blob/master/syntaxes/log.tmLanguage",
+    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+    "Once accepted there, we are happy to receive an update request."
+  ],
+  "version": "https://github.com/emilast/vscode-logfile-highlighter/commit/8acba9307254d1887ac770057767698c82d926c6",
+  "name": "Log file",
+  "scopeName": "text.log",
+  "patterns": [
+    {
+      "match": "\\b(INFO|INFORMATION|NOTE)\\b:",
+      "name": "log.info"
+    },
+    {
+      "match": "\\b(SUCCESS|DONE|SOLVED)\\b:",
+      "name": "log.success"
+    },
+    {
+      "match": "\\b(DEBUG|FIX|SOLVE)\\b:",
+      "name": "log.debug"
+    },
+    {
+      "match": "\\b(WARNING|ALERT|DANGER)\\b:",
+      "name": "log.warning"
+    },
+    {
+      "match": "\\b(ERROR|FAILED|FAILURE)\\b:",
+      "name": "log.error"
+    },
+    {
+      "match": "([A-Z0-9_]+) ",
+      "name": "log.uppercase.name"
+    }
+  ]
+}
