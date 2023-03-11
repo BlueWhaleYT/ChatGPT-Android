@@ -26,6 +26,7 @@ import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.SDKUtil;
+import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.google.gson.Gson;
@@ -37,6 +38,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import okhttp3.Call;
@@ -76,9 +78,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_clear:
-                clearAllChats(this);
-                break;
             case R.id.menu_settings:
                 IntentUtil.intent(this, SettingsActivity.class);
                 break;
@@ -89,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     private void initialize() {
         setupChatList();
         binding.btnSend.setOnClickListener(v -> sendMessage());
+        binding.btnClear.setOnClickListener(v -> clearAllChats());
 
 //        CommonUtil.waitForTimeThenDo(100, () -> {
 //            binding.etMessage.setText("how to make a tic tac toe game in javascript with markdown.");
@@ -128,9 +128,8 @@ public class MainActivity extends AppCompatActivity {
         rvList.setAdapter(adapter);
 
         // 從SharedPreferences中讀取已儲存的項目數據
-        var preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        var json = PreferencesManager.getChatContext();
         var gson = new Gson();
-        var json = preferences.getString("message_list", "");
         var type = new TypeToken<ArrayList<Message>>() {}.getType();
         messages = gson.fromJson(json, type);
 
@@ -181,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             binding.etMessage.setText("");
             updateIsRequesting(true);
             try {
-                openAIClient.setPrompt(userInput);
+                openAIClient.setPrompt(Message.getContext() + "\n" + userInput);
                 openAIClient.generateResponse(new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -254,8 +253,8 @@ public class MainActivity extends AppCompatActivity {
         return openAIClient;
     }
 
-    private void clearAllChats(Context context) {
-        adapter.removeAllMessages(context);
+    private void clearAllChats() {
+        adapter.removeAllMessages(this);
         adapter = new MessageAdapter(new ArrayList<>());
         binding.rvChatList.setAdapter(adapter);
         adapter.notifyDataSetChanged();

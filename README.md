@@ -2,7 +2,7 @@
 
 > **Note**: This may not have the same result of ChatGPT Official.
 
-This is an experimental project enabling users to chat with AI via OpenAI. Note that there's no past conversation feature.
+This is an experimental android app enabling users to chat with AI via OpenAI. It supports past conversations (context linking), but it has the limit from the max tokens you've set.
 
 ## Supported models
 
