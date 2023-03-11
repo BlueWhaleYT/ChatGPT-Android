@@ -1,6 +1,5 @@
-package com.bluewhaleyt.chatgpt;
+package com.bluewhaleyt.chatgpt.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,16 +16,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bluewhaleyt.chatgpt.MainActivity;
+import com.bluewhaleyt.chatgpt.R;
 import com.bluewhaleyt.chatgpt.databinding.DialogLayoutMarkdownViewBinding;
+import com.bluewhaleyt.chatgpt.models.Message;
 import com.bluewhaleyt.chatgpt.utils.MarkedView;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
-import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -131,7 +131,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         var editor = preferences.edit();
         editor.remove("message_list");
         editor.apply();
-        MainActivity.clearAllChats(context);
     }
 
     public boolean isEmpty() {
@@ -142,7 +141,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         long timeMillis = (long) message.getSentTime();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timeMillis);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm a", Locale.US);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/yyyy\nh:mm a", Locale.US);
         String time = dateFormat.format(calendar.getTime());
         holder.tvTime.setText(time);
     }
@@ -206,7 +205,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         saveData(context);
     }
 
-    void saveData(Context context) {
+    public void saveData(Context context) {
         var preferences = PreferenceManager.getDefaultSharedPreferences(context);
         var editor = preferences.edit();
         var gson = new Gson();

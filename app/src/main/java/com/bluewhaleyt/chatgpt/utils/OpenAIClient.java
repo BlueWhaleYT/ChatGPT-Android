@@ -7,17 +7,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.util.Locale;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Callback;
-import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class OpenAIClient {
 
@@ -37,6 +36,7 @@ public class OpenAIClient {
     private double maxTokens, temperature;
     private String apiKey , apiUrl, model, prompt;
     private boolean isEcho;
+    private JSONObject parameters;
 
     public OpenAIClient() {
         client = new OkHttpClient.Builder()
@@ -88,6 +88,8 @@ public class OpenAIClient {
 
     public void setPrompt(String prompt) { this.prompt = prompt; }
 
+    public String getPrompt() { return prompt; }
+
     public void setMessage(String prompt) { setPrompt(prompt); }
 
     public void setMaxTokens(double maxTokens) { this.maxTokens = maxTokens; }
@@ -95,6 +97,8 @@ public class OpenAIClient {
     public void setTemperature(double temperature) { this.temperature = temperature; }
 
     public void setEcho(boolean isEcho) { this.isEcho = isEcho; }
+
+    public void setParameters(JSONObject parameters) { this.parameters = parameters; }
 
     public JSONObject getSettings() throws JSONException {
         var json = new JSONObject();
@@ -141,6 +145,7 @@ public class OpenAIClient {
             var jsonMessageObj = jsonArray.getJSONObject(0).getJSONObject("message");
             resultText = jsonMessageObj.getString("content");
         }
+
         return resultText.trim();
     }
 

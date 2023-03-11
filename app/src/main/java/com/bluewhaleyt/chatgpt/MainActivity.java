@@ -2,29 +2,23 @@ package com.bluewhaleyt.chatgpt;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+import com.bluewhaleyt.chatgpt.adapters.MessageAdapter;
 import com.bluewhaleyt.chatgpt.databinding.ActivityMainBinding;
+import com.bluewhaleyt.chatgpt.models.Message;
 import com.bluewhaleyt.chatgpt.utils.NotificationUtil;
 import com.bluewhaleyt.chatgpt.utils.OpenAIClient;
 import com.bluewhaleyt.chatgpt.utils.PreferencesManager;
@@ -36,15 +30,13 @@ import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.l4digital.fastscroll.FastScroller;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.Call;
@@ -171,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
             binding.etMessage.setVisibility(View.VISIBLE);
             binding.btnSend.setVisibility(View.VISIBLE);
             binding.rvChatList.setVisibility(View.VISIBLE);
+
             openAIClient = new OpenAIClient();
             openAIClient.setModel(PreferencesManager.getOpenAIModel());
             openAIClient.setApiUrl(getAPIURL());
@@ -261,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
         return openAIClient;
     }
 
-    public static void clearAllChats(Context context) {
+    private void clearAllChats(Context context) {
         adapter.removeAllMessages(context);
         adapter = new MessageAdapter(new ArrayList<>());
         binding.rvChatList.setAdapter(adapter);
