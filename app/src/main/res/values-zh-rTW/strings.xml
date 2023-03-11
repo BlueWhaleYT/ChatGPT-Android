@@ -26,4 +26,8 @@
     <string name="echo">迴聲文本</string>
     <string name="model">模型</string>
     <string name="tell_me_more">告訴我更多</string>
+    <string name="save">儲存</string>
+    <string name="save_desc">儲存此訊息至 %1$s</string>
+    <string name="file_name">檔案名稱</string>
+    <string name="save_success">此訊息已儲存至 %1$s</string>
 </resources>

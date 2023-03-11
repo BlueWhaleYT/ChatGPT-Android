@@ -1,6 +1,9 @@
 package com.bluewhaleyt.chatgpt.models;
 
+import com.bluewhaleyt.chatgpt.App;
+import com.bluewhaleyt.chatgpt.R;
 import com.bluewhaleyt.chatgpt.utils.PreferencesManager;
+import com.bluewhaleyt.filemanagement.FileUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -13,6 +16,8 @@ public class Message {
     private String message;
     private boolean isSentByUser;
     private double sentTime;
+
+    public static final String MESSAGES_SAVE_PATH = FileUtil.getExternalStoragePath() + "/" + App.getContext().getString(R.string.app_name) + "/messages/";
 
     public Message(String message, boolean isSentByUser) {
         this.message = message;

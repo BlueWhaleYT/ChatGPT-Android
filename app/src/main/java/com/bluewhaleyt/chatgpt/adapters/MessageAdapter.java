@@ -1,5 +1,6 @@
 package com.bluewhaleyt.chatgpt.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +22,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bluewhaleyt.chatgpt.MainActivity;
 import com.bluewhaleyt.chatgpt.R;
 import com.bluewhaleyt.chatgpt.databinding.DialogLayoutMarkdownViewBinding;
+import com.bluewhaleyt.chatgpt.databinding.DialogLayoutSaveMessageBinding;
 import com.bluewhaleyt.chatgpt.models.Message;
 import com.bluewhaleyt.chatgpt.utils.MarkedView;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
+import com.bluewhaleyt.component.snackbar.SnackbarUtil;
+import com.bluewhaleyt.filemanagement.FileUtil;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.gson.Gson;
 
@@ -86,6 +91,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         holder.btnView.setOnClickListener(v -> viewMarkdown(context, message.getMessage()));
         holder.btnShare.setOnClickListener(v -> shareMessage(context, message.getMessage()));
+        holder.btnSave.setOnClickListener(v -> saveMessageAsFile(context, message.getMessage()));
         holder.btnTellMeMore.setOnClickListener(v -> mainActivity.tellMeMore());
 
         displaySentTime(holder, message);
@@ -174,7 +180,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         LinearLayout layoutMessageContainer, layoutMessageBox, layoutFooter;
         MarkedView mvMessage;
         ImageView ivAvatar;
-        Button btnView, btnShare, btnTellMeMore;
+        Button btnView, btnShare, btnSave, btnTellMeMore;
         TextView tvTime;
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -186,6 +192,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             ivAvatar = itemView.findViewById(R.id.iv_avatar);
             btnView = itemView.findViewById(R.id.btn_view);
             btnShare = itemView.findViewById(R.id.btn_share);
+            btnSave = itemView.findViewById(R.id.btn_save);
             btnTellMeMore = itemView.findViewById(R.id.btn_tell_me_more);
             tvTime = itemView.findViewById(R.id.tv_time);
         }
@@ -219,5 +226,21 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         var json = gson.toJson(messages);
         editor.putString("message_list", json);
         editor.apply();
+    }
+
+    private void saveMessageAsFile(Context context, String text) {
+        var inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        var binding = DialogLayoutSaveMessageBinding.inflate(inflater);
+        var dialog = new DialogUtil(context, context.getString(R.string.save));
+        dialog.setMessage(context.getString(R.string.save_desc, Message.MESSAGES_SAVE_PATH));
+        dialog.setPositiveButton(android.R.string.ok, (d, i) -> {
+            var fileName = binding.editText.getText().toString();
+            var path = Message.MESSAGES_SAVE_PATH + fileName;
+            FileUtil.writeFile(path, text);
+            SnackbarUtil.makeSnackbar((Activity) context, context.getString(R.string.save_success, Message.MESSAGES_SAVE_PATH));
+        });
+        dialog.setNegativeButton(android.R.string.cancel, null);
+        dialog.setView(binding.getRoot());
+        dialog.build();
     }
 }

@@ -73,42 +73,66 @@
             android:layout_marginBottom="5dp"
             android:gravity="center">
 
-            <Button
-                android:id="@+id/btn_tell_me_more"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/tell_me_more"
-                app:strokeColor="?colorOnSecondary"
-                app:icon="@drawable/ic_baseline_read_more_24"
-                app:iconPadding="10dp"
-                android:layout_marginEnd="5dp" />
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btn_view"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/view"
-                app:strokeColor="?colorOnSecondary"
-                app:icon="@drawable/ic_baseline_remove_red_eye_24"
-                app:iconPadding="10dp"
-                android:layout_marginEnd="5dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btn_share"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/share"
-                app:strokeColor="?colorOnSecondary"
-                app:icon="@drawable/ic_baseline_share_24"
-                app:iconPadding="10dp"/>
+                    <Button
+                        android:id="@+id/btn_tell_me_more"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="@string/tell_me_more"
+                        app:strokeColor="?colorOnSecondary"
+                        app:icon="@drawable/ic_baseline_read_more_24"
+                        app:iconPadding="10dp"
+                        android:layout_marginEnd="5dp" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                    <Button
+                        android:id="@+id/btn_view"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="@string/view"
+                        app:strokeColor="?colorOnSecondary"
+                        app:icon="@drawable/ic_baseline_remove_red_eye_24"
+                        app:iconPadding="10dp"
+                        android:layout_marginEnd="5dp" />
+
+                    <Button
+                        android:id="@+id/btn_share"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="@string/share"
+                        app:strokeColor="?colorOnSecondary"
+                        app:icon="@drawable/ic_baseline_share_24"
+                        app:iconPadding="10dp"
+                        android:layout_marginEnd="5dp"/>
+
+                    <Button
+                        android:id="@+id/btn_save"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="@string/save"
+                        app:strokeColor="?colorOnSecondary"
+                        app:icon="@drawable/ic_baseline_save_24"
+                        app:iconPadding="10dp"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
 
         </LinearLayout>
 

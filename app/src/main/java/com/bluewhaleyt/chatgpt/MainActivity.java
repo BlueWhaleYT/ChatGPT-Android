@@ -25,10 +25,12 @@ import com.bluewhaleyt.chatgpt.utils.PreferencesManager;
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.common.IntentUtil;
+import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.common.SDKUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
+import com.bluewhaleyt.filemanagement.FileUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -86,6 +88,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initialize() {
+
+        requestPermission();
+
         setupChatList();
         binding.btnSend.setOnClickListener(v -> sendMessage());
         binding.btnClear.setOnClickListener(v -> clearAllChats());
@@ -108,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
 
         updateIsShowSpacer();
         if (!adapter.isEmpty()) updateIsRequesting(true);
+    }
+
+    private void requestPermission() {
+        if (PermissionUtil.isAlreadyGrantedExternalStorageAccess()) {
+            FileUtil.makeDirectory(Message.MESSAGES_SAVE_PATH);
+        } else PermissionUtil.requestAllFileAccess(this);
     }
 
     private void setupChatList() {

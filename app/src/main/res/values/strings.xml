@@ -27,4 +27,8 @@
     <string name="echo">Echo</string>
     <string name="model">Model</string>
     <string name="tell_me_more">Tell me more</string>
+    <string name="save">Save</string>
+    <string name="save_desc">Save this message to %1$s</string>
+    <string name="file_name">Filename</string>
+    <string name="save_success">Message is saved in %1$s</string>
 </resources>
