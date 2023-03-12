@@ -3,6 +3,7 @@ package com.bluewhaleyt.chatgpt.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.preference.PreferenceManager;
@@ -15,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bluewhaleyt.chatgpt.ui.activities.MainActivity;
@@ -28,6 +30,7 @@ import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -78,13 +81,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         if (message.isSentByUser()) {
             holder.layoutFooter.setVisibility(View.GONE);
             holder.ivAvatar.setImageResource(R.drawable.user_avatar);
-            gd.setColor(Color.TRANSPARENT);
+            gd.setColor(dynamic.getColorPrimaryContainer());
+            gd.setAlpha(80);
         } else {
             holder.layoutFooter.setVisibility(View.VISIBLE);
             holder.ivAvatar.setImageResource(R.drawable.chatgpt_avatar);
-            gd.setColor(dynamic.getColorPrimaryContainer());
-            gd.setAlpha(100);
+            gd.setColor(dynamic.getColorOnSurfaceVariant());
+            gd.setAlpha(10);
+            setMargin(holder.layoutMessageBox, 0, 20, 0, 0);
         }
+
         holder.layoutMessageBox.setBackground(gd);
 
         holder.btnView.setOnClickListener(v -> viewMarkdown(context, message.getMessage()));
@@ -151,7 +157,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         long timeMillis = (long) message.getSentTime();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timeMillis);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/yyyy\nh:mm a", Locale.US);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/yyyy - h:mm a");
         String time = dateFormat.format(calendar.getTime());
         holder.tvTime.setText(time);
     }
@@ -178,7 +184,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         LinearLayout layoutMessageContainer, layoutMessageBox, layoutFooter;
         MarkedView mvMessage;
         ImageView ivAvatar;
-        Button btnView, btnShare, btnSave, btnTellMeMore;
+        MaterialButton btnView, btnShare, btnSave, btnTellMeMore;
         TextView tvTime;
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -240,5 +246,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         dialog.setNegativeButton(android.R.string.cancel, null);
         dialog.setView(binding.getRoot());
         dialog.build();
+    }
+
+    private void setMargin(View v, int left, int top, int right, int bottom) {
+        var params = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+        params.setMargins(left, top, right, bottom);
+        v.setLayoutParams(params);
     }
 }

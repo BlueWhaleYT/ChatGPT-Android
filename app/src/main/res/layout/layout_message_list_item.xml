@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:animateLayoutChanges="true"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/layout_message_box"
@@ -19,7 +19,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:animateLayoutChanges="true"
-            android:padding="15dp">
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="15dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -32,7 +34,17 @@
                     android:layout_height="30dp"
                     android:src="@drawable/user_avatar"
                     android:scaleType="fitCenter"
-                    android:layout_gravity="center_horizontal"/>
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp">
 
                 <TextView
                     android:id="@+id/tv_time"
@@ -40,29 +52,19 @@
                     android:layout_height="wrap_content"
                     android:text="time"
                     android:textSize="9sp"
-                    android:lineSpacingExtra="4dp"
+                    android:alpha=".5"
                     android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"/>
 
+                <com.bluewhaleyt.chatgpt.utils.MarkedView
+                    android:id="@+id/mv_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="-15dp"
+                    android:animateLayoutChanges="true"/>
+
             </LinearLayout>
-
-            <com.bluewhaleyt.chatgpt.utils.MarkedView
-                android:id="@+id/mv_message"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:animateLayoutChanges="true"/>
-
-            <!--        <com.bluewhaleyt.chatgpt.utils.EllipsizingTextView-->
-            <!--            android:id="@+id/tv_message"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="match_parent"-->
-            <!--            android:text="message\nmessage"-->
-            <!--            android:textSize="16sp"-->
-            <!--            android:lineSpacingExtra="8dp"-->
-            <!--            android:gravity="center_vertical"-->
-            <!--            android:maxLines="20"-->
-            <!--            android:ellipsize="end" />-->
 
         </LinearLayout>
 
@@ -77,7 +79,8 @@
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -90,7 +93,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:text="@string/tell_me_more"
-                        app:strokeColor="?colorOnSecondary"
+                        app:strokeColor="?colorSecondaryContainer"
                         app:icon="@drawable/ic_baseline_read_more_24"
                         app:iconPadding="10dp"
                         android:layout_marginEnd="5dp" />
@@ -101,7 +104,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:text="@string/view"
-                        app:strokeColor="?colorOnSecondary"
+                        app:strokeColor="?colorSecondaryContainer"
                         app:icon="@drawable/ic_baseline_remove_red_eye_24"
                         app:iconPadding="10dp"
                         android:layout_marginEnd="5dp" />
@@ -112,7 +115,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:text="@string/share"
-                        app:strokeColor="?colorOnSecondary"
+                        app:strokeColor="?colorSecondaryContainer"
                         app:icon="@drawable/ic_baseline_share_24"
                         app:iconPadding="10dp"
                         android:layout_marginEnd="5dp"/>
@@ -123,7 +126,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:text="@string/save"
-                        app:strokeColor="?colorOnSecondary"
+                        app:strokeColor="?colorSecondaryContainer"
                         app:icon="@drawable/ic_baseline_save_24"
                         app:iconPadding="10dp"/>
 

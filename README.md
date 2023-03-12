@@ -14,7 +14,7 @@ This is an **experimental** android app enabling users to chat with AI via [Open
 ## Supported models
 
 - `text-davinci-003`: not recommended for long context.
-- `gpt-3.5-turbo`: used by ChatGPT, recommended for long context and has adjustments on tokens streaming.
+- `gpt-3.5-turbo`: used by ChatGPT, recommended for long context and has adjustments on tokens streaming (but the context is not unlimited)
 
 ## Get Started
 

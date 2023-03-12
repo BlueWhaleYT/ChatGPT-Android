@@ -158,28 +158,4 @@ public class OpenAIClient {
         return resultText;
     }
 
-//    private SpannableStringBuilder getParsedText(String text) {
-//        var builder = new SpannableStringBuilder(text);
-//        // 定義正則表達式
-//        Pattern codeBlockPattern = Pattern.compile("```(\\w+)\n(.*?)\n```", Pattern.DOTALL);
-//
-//        // 找到所有符合正則表達式的部分
-//        Matcher matcher = codeBlockPattern.matcher(builder);
-//        while (matcher.find()) {
-//            String type = matcher.group(1);
-//            String code = matcher.group(2);
-//
-//            // 將被 ``` 包圍的部分用 SpannableString 包圍起來，同時設置字體樣式
-//            int start = matcher.start();
-//            int end = matcher.end();
-//            var spannableCode = new SpannableString(code + "\n");
-//
-//            spannableCode.setSpan(new CustomTypefaceSpan(Typeface.MONOSPACE), 0, spannableCode.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//            builder.replace(start, end, spannableCode);
-//        }
-//
-//        // 將處理後的文字設置給 TextView
-//        return builder;
-//    }
-
 }
