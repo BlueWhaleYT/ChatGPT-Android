@@ -10,6 +10,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -79,6 +80,7 @@ public final class MarkedView extends WebView {
                 }
             }
         });
+        setWebChromeClient(new WebChromeClient());
 
         loadUrl("file:///android_asset/html/md_preview.html");
 
