@@ -20,7 +20,7 @@
             android:orientation="horizontal"
             android:animateLayoutChanges="true"
             android:paddingStart="15dp"
-            android:paddingEnd="15dp"
+            android:paddingEnd="0dp"
             android:paddingBottom="15dp">
 
             <LinearLayout

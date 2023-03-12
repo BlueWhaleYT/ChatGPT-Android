@@ -6,6 +6,9 @@
         <item name="materialAlertDialogTheme">@style/Theme.AlertDialog</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog</item>
         <item name="dialogCornerRadius">28dp</item>
+
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="Theme.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">

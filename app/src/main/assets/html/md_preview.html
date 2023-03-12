@@ -7,7 +7,6 @@
     <script src="js/highlight.pack.js"></script>
     <script src="js/md_preview.js"></script>
 
-    <link rel="stylesheet" href="css/theme/atom_one_dark.css"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
 
     <style>
@@ -28,5 +27,25 @@
 </head>
 <body>
     <div class="container" id="preview"></div>
+
+    <script>
+
+        function lightTheme() {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/theme/atom_one_light.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+
+        function darkTheme() {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/theme/atom_one_dark.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+
+    </script>
 </body>
 </html>
