@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bluewhaleyt.chatgpt.databinding.ActivityMyFilesBinding;
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 
