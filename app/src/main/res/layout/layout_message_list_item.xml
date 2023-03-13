@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingStart="0dp"
-                    android:paddingEnd="10dp">
+                    android:paddingEnd="15dp">
 
                     <TextView
                         android:id="@+id/tv_time"
@@ -114,7 +114,7 @@
                         android:layout_height="40dp"
                         android:text="@string/tell_me_more"
                         app:strokeColor="?colorSecondaryContainer"
-                        app:icon="@drawable/ic_baseline_read_more_24"
+                        app:icon="@drawable/ic_baseline_contact_support_24"
                         app:iconPadding="10dp"
                         android:layout_marginEnd="5dp" />
 

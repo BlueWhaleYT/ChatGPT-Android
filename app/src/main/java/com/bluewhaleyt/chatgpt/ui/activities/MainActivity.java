@@ -221,11 +221,11 @@ public class MainActivity extends BaseActivity {
             updateIsShowSpacer();
         });
 
-//        if (!isSentByUser) {
-//            var notify = new NotificationUtil(this);
-//            var intent = new Intent(this, MainActivity.class);
-//            notify.showNotification(getString(R.string.bot), message, intent);
-//        }
+        if (!isSentByUser) {
+            var notify = new NotificationUtil(this);
+            var intent = new Intent(this, MainActivity.class);
+            notify.showNotification(getString(R.string.bot), message, intent);
+        }
     }
 
     private void removeMessage(int position) {
