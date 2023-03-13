@@ -31,8 +31,29 @@
             border-radius: 10px !important;
         }
 
-        table {
+        pre {
+            font-size: 18px;
+            padding: 0px;
+        }
 
+        table:not(pre table) {
+            border-collapse: collapse;
+            width: 100%;
+            overflow-x: auto;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        th:not(pre th), td:not(pre td) {
+            text-align: left;
+            padding: 8px;
+            border-width: .5px;
+            border-style: solid;
+            white-space: nowrap;
+        }
+
+        th:not(pre th) {
+            
         }
 
         .hljs-ln-numbers {
