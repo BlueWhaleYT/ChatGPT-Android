@@ -54,7 +54,8 @@ public class NotificationUtil {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pendingIntent)
                 .setDefaults(NotificationCompat.DEFAULT_SOUND | NotificationCompat.DEFAULT_VIBRATE)
-                .setPriority(priority);
+                .setPriority(priority)
+                .setAutoCancel(true);
 
         // 顯示通知
         mNotificationManager.notify(0, builder.build());
