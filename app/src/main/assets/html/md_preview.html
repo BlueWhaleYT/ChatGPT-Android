@@ -1,32 +1,40 @@
 <!doctype html>
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/marked.js"></script>
-<!--    <script src="js/highlight.pack.js"></script>-->
+    <!--    <script src="js/highlight.pack.js"></script>-->
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
     <script src="js/md_preview.js"></script>
 
-    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css" />
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
-        body, html {
+        body,
+        html {
             background: transparent;
             font-size: 16px;
             font-family: "Ubuntu", sans-serif;
         }
-        img { max-width: 100%; }
 
-        ul, ol {
+        img {
+            max-width: 100%;
+        }
+
+        ul,
+        ol {
             padding-left: 15px;
         }
 
-        pre, code {
+        pre,
+        code {
             font-family: "JetBrains Mono", monospace !important;
             border-radius: 10px !important;
         }
@@ -44,7 +52,8 @@
             margin-bottom: 10px;
         }
 
-        th:not(pre th), td:not(pre td) {
+        th:not(pre th),
+        td:not(pre td) {
             text-align: left;
             padding: 8px;
             border-width: .5px;
@@ -52,21 +61,25 @@
             white-space: nowrap;
         }
 
-        th:not(pre th) {
-            
-        }
+        th:not(pre th) {}
 
         .hljs-ln-numbers {
             padding-right: 10px !important;
             opacity: .3 !important;
         }
+
     </style>
 
 </head>
-<body>
-<div class="container" id="preview"></div>
 
-<script>
+<body>
+    <div class="container" id="preview"></div>
+
+    <script>
+
+        function init() {
+            // setCopyCodeButton();
+        }
 
         function setLinkColor(color) {
             let links = document.getElementsByTagName('a');
@@ -91,6 +104,27 @@
             document.getElementsByTagName('head')[0].appendChild(link);
         }
 
-</script>
+        function setCopyCodeButton() {
+            let pre = document.querySelectorAll('pre .hljs');
+
+            pre.forEach(function (pre) {
+                let copyBtn = document.createElement('button');
+                copyBtn.className = "copy-btn";
+                copyBtn.textContent = "Copy";
+
+                pre.insertAdjacentElement('afterend', copyBtn);
+                copyBtn.addEventListener('click', function () {
+                    let range = document.createRange();
+                    range.selectNode(pre);
+                    getSelection().addRange(range);
+                    document.execCommand("copy");
+                    getSelection().removeAllRanges();
+                });
+            });
+        }
+
+
+    </script>
 </body>
+
 </html>

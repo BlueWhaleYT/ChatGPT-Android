@@ -6,7 +6,7 @@ $(function() {
         langPrefix: '',
         highlight: function(code){
             return hljs.highlightAuto(code).value;
-        }
+        },
     });
 
     rend.code = function(code, lang, escaped){

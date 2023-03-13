@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -64,11 +65,12 @@ public final class MarkedView extends WebView {
                 var dynamic = new DynamicColorsUtil(getContext());
                 var colorBg = String.format("#%06X", (0xFFFFFF & dynamic.getColorOnSurfaceVariant()));
                 var colorLink = String.format("#%06X", (0xFFFFFF & dynamic.getColorPrimary()));
-                view.loadUrl("javascript:document.body.style.setProperty('color', '" + colorBg + "');");
+                view.evaluateJavascript("document.body.style.setProperty('color', '" + colorBg + "');", null);
 
                 var func = CommonUtil.isInDarkMode(getContext()) ? "setDarkTheme()" : "setLightTheme()";
                 view.evaluateJavascript(func, null);
 
+                view.evaluateJavascript("init()", null);
                 view.evaluateJavascript("setLinkColor('" + colorLink + "')", null);
             }
 
@@ -83,7 +85,6 @@ public final class MarkedView extends WebView {
             }
         });
         setWebChromeClient(new WebChromeClient());
-
         loadUrl("file:///android_asset/html/md_preview.html");
 
         getSettings().setJavaScriptEnabled(true);
