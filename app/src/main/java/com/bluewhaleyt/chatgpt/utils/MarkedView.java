@@ -61,13 +61,15 @@ public final class MarkedView extends WebView {
         setWebViewClient(new WebViewClient(){
             public void onPageFinished(WebView view, String url){
                 sendScriptAction();
-                var color = "";
                 var dynamic = new DynamicColorsUtil(getContext());
-                color = String.format("#%06X", (0xFFFFFF & dynamic.getColorOnSurfaceVariant()));
-                view.loadUrl("javascript:document.body.style.setProperty('color', '" + color + "');");
+                var colorBg = String.format("#%06X", (0xFFFFFF & dynamic.getColorOnSurfaceVariant()));
+                var colorLink = String.format("#%06X", (0xFFFFFF & dynamic.getColorPrimary()));
+                view.loadUrl("javascript:document.body.style.setProperty('color', '" + colorBg + "');");
 
-                var func = CommonUtil.isInDarkMode(getContext()) ? "darkTheme()" : "lightTheme()";
+                var func = CommonUtil.isInDarkMode(getContext()) ? "setDarkTheme()" : "setLightTheme()";
                 view.evaluateJavascript(func, null);
+
+                view.evaluateJavascript("setLinkColor('" + colorLink + "')", null);
             }
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

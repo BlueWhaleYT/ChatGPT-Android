@@ -47,16 +47,23 @@
 
 <script>
 
-        function lightTheme() {
-            var link = document.createElement('link');
+        function setLinkColor(color) {
+            let links = document.getElementsByTagName('a');
+            for (let i = 0; i < links.length; i++) {
+                links[i].style.color = color;
+            }
+        }
+
+        function setLightTheme() {
+            let link = document.createElement('link');
             link.rel = 'stylesheet';
             link.type = 'text/css';
             link.href = 'css/theme/atom_one_light.css';
             document.getElementsByTagName('head')[0].appendChild(link);
         }
 
-        function darkTheme() {
-            var link = document.createElement('link');
+        function setDarkTheme() {
+            let link = document.createElement('link');
             link.rel = 'stylesheet';
             link.type = 'text/css';
             link.href = 'css/theme/atom_one_dark.css';
