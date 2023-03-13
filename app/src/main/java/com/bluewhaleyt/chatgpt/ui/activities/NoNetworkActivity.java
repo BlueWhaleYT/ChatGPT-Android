@@ -25,11 +25,11 @@ public class NoNetworkActivity extends AppCompatActivity {
     }
 
     private void initialize() {
-
         CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
         CommonUtil.setToolBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
         CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
 
+        getSupportActionBar().setTitle("");
         binding.btnRefresh.setOnClickListener(v -> {
             if (NetworkUtil.isNetworkAvailable(this)) IntentUtil.intent(this, MainActivity.class);
             else SnackbarUtil.makeErrorSnackbar(this, "No network available");

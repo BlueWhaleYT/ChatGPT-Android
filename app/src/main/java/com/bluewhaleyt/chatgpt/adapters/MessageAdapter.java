@@ -90,11 +90,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             holder.ivAvatar.setImageResource(R.drawable.chatgpt_avatar);
             gd.setColor(dynamic.getColorOnSurfaceVariant());
             gd.setAlpha(10);
-            setMargin(holder.layoutMessageBox, 0, 20, 0, 0);
 
             holder.tvRequestTime.setVisibility(View.VISIBLE);
             holder.tvRequestTime.setText(context.getString(R.string.request_time) + ": " + formatTime(context, message.getRequestTime()));
         }
+        setMargin(holder.layoutMessageBox, 0, 20, 0, 0);
 
         holder.layoutMessageBox.setBackground(gd);
 
