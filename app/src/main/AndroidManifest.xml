@@ -37,6 +37,7 @@
         <activity android:name=".ui.activities.MyFilesActivity" />
         <activity android:name=".ui.activities.CodeViewActivity" />
         <activity android:name=".ui.activities.SettingsActivity" />
+        <activity android:name=".ui.activities.NoNetworkActivity" />
 
         <receiver
             android:name=".NotificationReceiver"
