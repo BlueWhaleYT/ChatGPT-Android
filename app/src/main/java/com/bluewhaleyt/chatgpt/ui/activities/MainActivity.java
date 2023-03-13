@@ -158,12 +158,10 @@ public class MainActivity extends BaseActivity {
     private void setupChatGPT() {
         if (PreferencesManager.getOpenAIAPIKey().equals("")) {
             SnackbarUtil.makeSnackbar(this, getString(R.string.api_key_missing));
-            binding.etMessage.setVisibility(View.GONE);
-            binding.btnSend.setVisibility(View.GONE);
+            binding.layoutMessageInputContainer.setVisibility(View.GONE);
             binding.rvChatList.setVisibility(View.GONE);
         } else {
-            binding.etMessage.setVisibility(View.VISIBLE);
-            binding.btnSend.setVisibility(View.VISIBLE);
+            binding.layoutMessageInputContainer.setVisibility(View.VISIBLE);
             binding.rvChatList.setVisibility(View.VISIBLE);
 
             openAIClient = new OpenAIClient();
