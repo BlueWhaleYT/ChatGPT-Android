@@ -16,6 +16,7 @@ public class Message {
     private String message;
     private boolean isSentByUser;
     private double sentTime;
+    private double requestTime;
 
     public static final String MESSAGES_SAVE_PATH = FileUtil.getExternalStoragePath() + "/" + App.getContext().getString(R.string.app_name) + "/messages/";
 
@@ -44,6 +45,14 @@ public class Message {
 
     public double getSentTime() {
         return sentTime;
+    }
+
+    public void setRequestTime(double requestTime) {
+        this.requestTime = requestTime;
+    }
+
+    public double getRequestTime() {
+        return requestTime;
     }
 
     public static List<?> getContext() {
