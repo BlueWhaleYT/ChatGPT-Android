@@ -4,6 +4,20 @@
 
 This is an **experimental** android app enabling users to chat with AI via [OpenAI](https://openai.com/).
 
+## Screenshots
+
+These are some screenshots that you can have a look before installing CodeWhale.
+
+<div align="left">
+<div>
+    <img src="/screenshots/screenshot1.jpeg" width="18%" />
+    <img src="/screenshots/screenshot2.jpeg" width="18%" />
+    <img src="/screenshots/screenshot3.jpeg" width="18%" />
+    <img src="/screenshots/screenshot4.jpeg" width="18%" />
+    <img src="/screenshots/screenshot5.jpeg" width="18%" />
+</div>
+</div>
+
 ## Features
 
 - Past conversations: i.e. the context highly recommended using it with `gpt-3.5-turbo` model.
