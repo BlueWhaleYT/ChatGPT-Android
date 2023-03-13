@@ -6,7 +6,7 @@ This is an **experimental** android app enabling users to chat with AI via [Open
 
 ## Screenshots
 
-These are some screenshots that you can have a look before installing CodeWhale.
+These are some screenshots that you can have a look before using ChatGPT-Android app.
 
 <div align="left">
 <div>
