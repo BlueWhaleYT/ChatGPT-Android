@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingStart="0dp"
-                    android:paddingEnd="15dp">
+                    android:paddingEnd="20dp">
 
                     <TextView
                         android:id="@+id/tv_time"
