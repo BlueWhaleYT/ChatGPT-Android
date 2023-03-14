@@ -31,4 +31,5 @@
     <string name="file_name">檔案名稱</string>
     <string name="save_success">此訊息已儲存至 %1$s</string>
     <string name="my_files">我的檔案</string>
+    <string name="context">對話脈絡</string>
 </resources>

@@ -32,4 +32,5 @@
     <string name="file_name">Filename</string>
     <string name="save_success">Message is saved in %1$s</string>
     <string name="my_files">My Files</string>
+    <string name="context">Context</string>
 </resources>

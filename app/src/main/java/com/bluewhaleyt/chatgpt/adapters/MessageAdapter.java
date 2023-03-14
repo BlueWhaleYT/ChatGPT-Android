@@ -88,8 +88,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         } else {
             holder.layoutFooter.setVisibility(View.VISIBLE);
             holder.ivAvatar.setImageResource(R.drawable.chatgpt_avatar);
-            gd.setColor(dynamic.getColorOnSurfaceVariant());
-            gd.setAlpha(10);
+            gd.setColor(dynamic.getColorOutlineVariant());
+            gd.setAlpha(40);
 
             holder.tvRequestTime.setVisibility(View.VISIBLE);
             holder.tvRequestTime.setText(context.getString(R.string.request_time) + ": " + formatTime(context, message.getRequestTime()));

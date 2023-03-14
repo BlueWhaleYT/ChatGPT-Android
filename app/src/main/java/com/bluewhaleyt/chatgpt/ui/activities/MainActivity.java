@@ -77,6 +77,13 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.menu_context:
+                var dialog = new DialogUtil(this, getString(R.string.context));
+                dialog.setMessage(TextUtils.join("\n", Message.getContext()));
+                dialog.setPositiveButton(R.string.clear, (d, i) -> clearAllChats());
+                dialog.setNegativeButton(android.R.string.cancel, null);
+                dialog.build();
+                break;
             case R.id.menu_my_files:
                 IntentUtil.intent(this, MyFilesActivity.class);
                 break;
