@@ -16,6 +16,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.bluewhaleyt.chatgpt.models.Message;
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 
@@ -63,8 +64,9 @@ public final class MarkedView extends WebView {
             public void onPageFinished(WebView view, String url){
                 sendScriptAction();
                 var dynamic = new DynamicColorsUtil(getContext());
-                var colorBg = String.format("#%06X", (0xFFFFFF & dynamic.getColorOnSurfaceVariant()));
-                var colorLink = String.format("#%06X", (0xFFFFFF & dynamic.getColorPrimary()));
+                var colorBg = toHex(dynamic.getColorOnSurfaceVariant());
+                var colorLink = toHex(dynamic.getColorPrimary());
+
                 view.evaluateJavascript("document.body.style.setProperty('color', '" + colorBg + "');", null);
 
                 var func = CommonUtil.isInDarkMode(getContext()) ? "setDarkTheme()" : "setLightTheme()";
@@ -99,6 +101,10 @@ public final class MarkedView extends WebView {
         setBackgroundColor(Color.TRANSPARENT);
 
 
+    }
+
+    private String toHex(int color) {
+        return String.format("#%06X", (0xFFFFFF & color));
     }
 
     private void sendScriptAction() {

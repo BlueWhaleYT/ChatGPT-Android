@@ -7,6 +7,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.preference.PreferenceManager;
+import android.text.style.ClickableSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.graphics.ColorUtils;
@@ -183,6 +185,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         binding.markdownView.setMDText(text);
         binding.tvPreviousMessage.setText(Message.getPreviousMessage(text));
+
+        binding.tvPreviousMessage.setEllipsisTextOnClickListener(new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                binding.tvPreviousMessage.setEllipsize(null);
+                binding.tvPreviousMessage.setMaxLines(Integer.MAX_VALUE);
+            }
+        });
     }
 
     private void shareMessage(Context context, String message) {

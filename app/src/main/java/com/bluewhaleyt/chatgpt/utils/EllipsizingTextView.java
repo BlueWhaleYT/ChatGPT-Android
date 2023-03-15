@@ -33,8 +33,11 @@ import android.text.Spanned;
 import android.text.StaticLayout;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -446,5 +449,14 @@ public class EllipsizingTextView extends AppCompatTextView {
             }
             return TextUtils.concat(firstDest, ELLIPSIS, secondDest);
         }
+    }
+
+    public SpannableString getEllipsis() {
+        return ELLIPSIS;
+    }
+
+    public void setEllipsisTextOnClickListener(ClickableSpan clickableSpan) {
+        setMovementMethod(LinkMovementMethod.getInstance());
+        ELLIPSIS.setSpan(clickableSpan, 0, ELLIPSIS.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 }
