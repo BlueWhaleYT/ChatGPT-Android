@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script>
     <script
         src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highlightjs-lang.js@latest/dist/highlightjs-lang.min.js"></script>
     <script src="js/md_preview.js"></script>
 
     <link rel="stylesheet" href="css/bootstrap.css" />
@@ -70,6 +71,21 @@
             text-align: right;
         }
 
+        .hljs-lang {
+            padding: 5px 0px 0px 10px;
+            color: grey;
+            opacity: .6;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .copy-btn {
+            border: none;
+        }
     </style>
 
 </head>
@@ -80,7 +96,7 @@
     <script>
 
         function init() {
-            // setCopyCodeButton();
+
         }
 
         function setLinkColor(color) {
@@ -107,24 +123,27 @@
         }
 
         function setCopyCodeButton() {
-            let pre = document.querySelectorAll('pre .hljs');
+            let pre = document.querySelectorAll('.hljs');
 
             pre.forEach(function (pre) {
-                let copyBtn = document.createElement('button');
-                copyBtn.className = "copy-btn";
-                copyBtn.textContent = "Copy";
+                if (pre.nextElementSibling && pre.nextElementSibling.classList.contains("copy-btn")) {
+                    return;
+                } else {
+                    let copyBtn = document.createElement('button');
+                    copyBtn.className = "copy-btn";
+                    copyBtn.textContent = "Copy";
 
-                pre.insertAdjacentElement('afterend', copyBtn);
-                copyBtn.addEventListener('click', function () {
-                    let range = document.createRange();
-                    range.selectNode(pre);
-                    getSelection().addRange(range);
-                    document.execCommand("copy");
-                    getSelection().removeAllRanges();
-                });
+                    pre.insertAdjacentElement('afterend', copyBtn);
+                    copyBtn.addEventListener('click', function () {
+                        let range = document.createRange();
+                        range.selectNode(pre);
+                        getSelection().addRange(range);
+                        document.execCommand("copy");
+                        getSelection().removeAllRanges();
+                    });
+                }
             });
         }
-
 
     </script>
 </body>

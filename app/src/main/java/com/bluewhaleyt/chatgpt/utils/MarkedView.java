@@ -100,7 +100,6 @@ public final class MarkedView extends WebView {
         getSettings().setLoadWithOverviewMode(true);
         setBackgroundColor(Color.TRANSPARENT);
 
-
     }
 
     private String toHex(int color) {
