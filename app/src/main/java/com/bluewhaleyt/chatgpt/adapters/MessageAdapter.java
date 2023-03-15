@@ -162,7 +162,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         long timeMillis = (long) message.getSentTime();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timeMillis);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/yyyy - h:mm a");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy - h:mm a");
         String time = dateFormat.format(calendar.getTime());
         holder.tvTime.setText(time);
     }
