@@ -22,16 +22,6 @@ public class SettingsFragment extends CustomPreferenceFragment {
     }
 
     private void init() {
-        var prefAPIKey = findPreference("pref_openai_api_key");
-
-        var apiKey = PreferencesManager.getOpenAIAPIKey();
-        var pattern = Pattern.compile("(?<=sk-)\\w+");
-        var matcher = pattern.matcher(apiKey);
-        if (matcher.find()) {
-            var match = matcher.group();
-            var secret = apiKey.replace(match, "x".repeat(match.length()));
-            prefAPIKey.setSummary(secret);
-        }
 
     }
 

@@ -3,7 +3,7 @@
 
     <string name="second">秒</string>
     <string name="min">分鐘</string>
-    <string name="request_time">請求時間</string>
+    <string name="request_time">請求時長</string>
     <string name="enter_message">輸入訊息</string>
     <string name="send">發送</string>
     <string name="view">檢視</string>
