@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Theme.ChatGPT" parent="Theme.Material3.DayNight">
-        <item name="android:fontFamily">@font/ubuntu_regular</item>
+        <item name="android:fontFamily">@font/alata_regular</item>
 
         <item name="materialAlertDialogTheme">@style/Theme.AlertDialog</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog</item>
