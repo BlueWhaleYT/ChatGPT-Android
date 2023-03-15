@@ -135,7 +135,7 @@ public class OpenAIClient {
         client.newCall(request).enqueue(callback);
     }
 
-    public String parseResponse(String responseBody) throws JSONException {
+    public String getResponse(String responseBody) throws JSONException {
         var jsonObject = new JSONObject(responseBody);
         var jsonArray = jsonObject.getJSONArray("choices");
         String resultText = null;
@@ -151,7 +151,7 @@ public class OpenAIClient {
         return resultText.trim();
     }
 
-    public String parseError(String responseBody) throws JSONException {
+    public String getErrorResponse(String responseBody) throws JSONException {
         var jsonObject = new JSONObject(responseBody);
         var errorObj = jsonObject.getJSONObject("error");
         var resultText = errorObj.getString("message");

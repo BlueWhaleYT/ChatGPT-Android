@@ -1,19 +1,27 @@
 package com.bluewhaleyt.chatgpt.ui.activities;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bluewhaleyt.chatgpt.R;
 import com.bluewhaleyt.chatgpt.adapters.MessageAdapter;
@@ -34,9 +42,13 @@ import com.bluewhaleyt.filemanagement.FileUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -101,7 +113,6 @@ public class MainActivity extends BaseActivity {
 
         setupChatList();
         binding.btnSend.setOnClickListener(v -> sendMessage());
-        binding.btnClear.setOnClickListener(v -> clearAllChats());
 
         var gd = new GradientDrawable();
         var dynamic = new DynamicColorsUtil(this);
@@ -200,10 +211,10 @@ public class MainActivity extends BaseActivity {
                     public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                         var responseBody = response.body().string();
                         try {
-                            addMessage(openAIClient.parseResponse(responseBody), false);
+                            addMessage(openAIClient.getResponse(responseBody), false);
                         } catch (JSONException e) {
                             try {
-                                showError(openAIClient.parseError(responseBody));
+                                showError(openAIClient.getErrorResponse(responseBody));
                                 removeMessage(messages.size() - 1);
                             } catch (JSONException ex) {
                                 showError(ex.getMessage());

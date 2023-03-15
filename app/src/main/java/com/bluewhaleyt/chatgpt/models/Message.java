@@ -55,17 +55,37 @@ public class Message {
         return requestTime;
     }
 
-    public static List<?> getContext() {
-        List<Message> messages;
+    private static List<Message> getMessages() {
         var gson = new Gson();
         var json = PreferencesManager.getChatContext();
         var type = new TypeToken<ArrayList<Message>>() {}.getType();
-        messages = gson.fromJson(json, type);
+        return  gson.fromJson(json, type);
+    }
+
+    public static List<?> getContext() {
         var list = new ArrayList<>();
-        for (int i = 0; i < messages.size(); i++) {
-            list.add(messages.get(i).getMessage());
+        for (int i = 0; i < getMessages().size(); i++) {
+            list.add(getMessages().get(i).getMessage());
         }
         return list;
+    }
+
+    public static String getPreviousMessage() {
+        if (getMessages().size() > 1) {
+            return getMessages().get(getMessages().size() - 2).getMessage();
+        } else {
+            return null;
+        }
+    }
+
+    public static String getPreviousMessage(String currentMessage) {
+        for (int i = getMessages().size() - 1; i >= 1; i--) {
+            Message message = getMessages().get(i);
+            if (message.getMessage().equals(currentMessage)) {
+                return getMessages().get(i - 1).getMessage();
+            }
+        }
+        return null;
     }
 
 }

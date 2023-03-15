@@ -175,7 +175,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         botDialog.create();
         botDialog.show();
 
+        var gd = new GradientDrawable();
+        gd.setColor(new DynamicColorsUtil(context).getColorPrimaryContainer());
+        gd.setAlpha(80);
+        gd.setCornerRadius(40);
+        binding.layoutPrevMessageContainer.setBackground(gd);
+
         binding.markdownView.setMDText(text);
+        binding.tvPreviousMessage.setText(Message.getPreviousMessage(text));
     }
 
     private void shareMessage(Context context, String message) {

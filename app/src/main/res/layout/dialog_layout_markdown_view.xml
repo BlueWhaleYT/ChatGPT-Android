@@ -15,6 +15,31 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/drag_handle" />
 
+    <LinearLayout
+        android:id="@+id/layout_prev_message_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_margin="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_contact_support_24"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="0dp"
+            android:layout_gravity="top"/>
+
+        <TextView
+            android:id="@+id/tv_previous_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="previous message\ntest"/>
+
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
