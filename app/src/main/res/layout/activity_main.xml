@@ -66,8 +66,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
                 android:layout_marginEnd="10dp">
 
                 <EditText
@@ -77,7 +75,9 @@
                     android:hint="@string/enter_message"
                     android:textColor="?colorOnSurfaceVariant"
                     android:imeOptions="flagNoExtractUi"
-                    android:background="@null"/>
+                    android:background="@null"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"/>
 
             </LinearLayout>
 

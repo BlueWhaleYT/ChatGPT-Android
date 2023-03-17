@@ -90,12 +90,8 @@ public final class MarkedView extends WebView {
         loadUrl("file:///android_asset/html/md_preview.html");
 
         getSettings().setJavaScriptEnabled(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            getSettings().setAllowUniversalAccessFromFileURLs(true);
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        }
+        getSettings().setAllowUniversalAccessFromFileURLs(true);
+        getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
         getSettings().setLoadWithOverviewMode(true);
         setBackgroundColor(Color.TRANSPARENT);
@@ -107,11 +103,7 @@ public final class MarkedView extends WebView {
     }
 
     private void sendScriptAction() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            loadUrl(previewText);
-        } else {
-            evaluateJavascript(previewText, null);
-        }
+        evaluateJavascript(previewText, null);
     }
 
     /** load Markdown text from file path. **/
@@ -155,11 +147,7 @@ public final class MarkedView extends WebView {
         String bs64MdText = imgToBase64(mdText);
         String escMdText = escapeForText(bs64MdText);
 
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            previewText = String.format("javascript:preview('%s', %b)", escMdText, isCodeScrollDisable());
-        } else {
-            previewText = String.format("preview('%s', %b)", escMdText, isCodeScrollDisable());
-        }
+        previewText = String.format("preview('%s', %b)", escMdText, isCodeScrollDisable());
         sendScriptAction();
     }
 
