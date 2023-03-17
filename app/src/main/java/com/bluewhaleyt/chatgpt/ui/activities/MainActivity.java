@@ -1,28 +1,17 @@
 package com.bluewhaleyt.chatgpt.ui.activities;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bluewhaleyt.chatgpt.R;
 import com.bluewhaleyt.chatgpt.adapters.MessageAdapter;
@@ -38,18 +27,13 @@ import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.common.SDKUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
-import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.apache.commons.io.IOUtils;
 import org.json.JSONException;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -120,7 +104,7 @@ public class MainActivity extends BaseActivity {
         gd.setColor(dynamic.getColorPrimaryContainer());
         gd.setAlpha(100);
         gd.setCornerRadius(100);
-        binding.etMessage.setBackground(gd);
+        binding.layoutEtMessageContainer.setBackground(gd);
 
         updateIsShowSpacer();
         if (!adapter.isEmpty()) updateIsRequesting(true);
