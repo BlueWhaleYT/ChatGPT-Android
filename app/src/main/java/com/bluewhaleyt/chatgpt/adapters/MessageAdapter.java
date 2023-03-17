@@ -87,6 +87,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             gd.setAlpha(80);
 
             holder.tvRequestTime.setVisibility(View.GONE);
+            holder.tvSentModel.setVisibility(View.GONE);
         } else {
             holder.layoutFooter.setVisibility(View.VISIBLE);
             holder.ivAvatar.setImageResource(R.drawable.chatgpt_avatar);
@@ -95,6 +96,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
             holder.tvRequestTime.setVisibility(View.VISIBLE);
             holder.tvRequestTime.setText(context.getString(R.string.request_time) + ": " + formatTime(context, message.getRequestTime()));
+
+            holder.tvSentModel.setVisibility(View.VISIBLE);
+            holder.tvSentModel.setText(context.getString(R.string.model) + ": " + message.getSentModel());
         }
         setMargin(holder.layoutMessageBox, 0, 20, 0, 0);
 
@@ -207,7 +211,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         MarkedView mvMessage;
         ImageView ivAvatar;
         MaterialButton btnView, btnShare, btnSave, btnTellMeMore;
-        TextView tvTime, tvRequestTime;
+        TextView tvTime, tvRequestTime, tvSentModel;
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
             var context = itemView.getContext();
@@ -222,6 +226,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             btnTellMeMore = itemView.findViewById(R.id.btn_tell_me_more);
             tvTime = itemView.findViewById(R.id.tv_time);
             tvRequestTime = itemView.findViewById(R.id.tv_request_time);
+            tvSentModel = itemView.findViewById(R.id.tv_sent_model);
         }
     }
 

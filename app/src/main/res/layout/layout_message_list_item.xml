@@ -66,6 +66,17 @@
                         android:gravity="center_vertical"/>
 
                     <TextView
+                        android:id="@+id/tv_sent_model"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="sent model"
+                        android:textSize="10sp"
+                        android:alpha=".5"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:gravity="center_horizontal"/>
+
+                    <TextView
                         android:id="@+id/tv_request_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Message {
 
-    private String message;
+    private String message, sentModel;
     private boolean isSentByUser;
     private double sentTime;
     private double requestTime;
@@ -53,6 +53,14 @@ public class Message {
 
     public double getRequestTime() {
         return requestTime;
+    }
+
+    public void setSentModel(String sentModel) {
+        this.sentModel = sentModel;
+    }
+
+    public String getSentModel() {
+        return sentModel;
     }
 
     private static List<Message> getMessages() {

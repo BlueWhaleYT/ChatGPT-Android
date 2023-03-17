@@ -236,7 +236,10 @@ public class MainActivity extends BaseActivity {
 
     private void addMessage(String message, boolean isSentByUser) {
         var chatMessage = new Message(message, isSentByUser, Calendar.getInstance().getTimeInMillis());
-        if (!isSentByUser) chatMessage.setRequestTime(openAIClient.getRequestTime());
+        if (!isSentByUser){
+            chatMessage.setRequestTime(openAIClient.getRequestTime());
+            chatMessage.setSentModel(openAIClient.getModel());
+        }
         runOnUiThread(() -> {
             messages.add(chatMessage);
             adapter.notifyItemInserted(messages.size() - 1);
