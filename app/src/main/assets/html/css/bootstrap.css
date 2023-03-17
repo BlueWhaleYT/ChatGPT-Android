@@ -35,12 +35,12 @@ video {
   vertical-align: baseline;
 }
 audio:not([controls]) {
-  display: none;
+  alata_regular
   height: 0;
 }
 [hidden],
 template {
-  display: none;
+  alata_regular
 }
 a {
   background-color: transparent;
@@ -239,7 +239,7 @@ th {
     page-break-after: avoid;
   }
   .navbar {
-    display: none;
+    alata_regular
   }
   .btn > .caret,
   .dropup > .btn > .caret {
@@ -3477,7 +3477,7 @@ input[type="button"].btn-block {
   opacity: 1;
 }
 .collapse {
-  display: none;
+  alata_regular
 }
 .collapse.in {
   display: block;
@@ -3525,7 +3525,7 @@ tbody.collapse.in {
   top: 100%;
   left: 0;
   z-index: 1000;
-  display: none;
+  alata_regular
   float: left;
   min-width: 160px;
   padding: 5px 0;
@@ -4156,7 +4156,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .tab-content > .tab-pane {
-  display: none;
+  alata_regular
 }
 .tab-content > .active {
   display: block;
@@ -4320,7 +4320,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-toggle {
-    display: none;
+    alata_regular
   }
 }
 .navbar-nav {
@@ -4864,7 +4864,7 @@ a.label:focus {
   cursor: pointer;
 }
 .label:empty {
-  display: none;
+  alata_regular
 }
 .btn .label {
   position: relative;
@@ -4927,7 +4927,7 @@ a.label:focus {
   border-radius: 10px;
 }
 .badge:empty {
-  display: none;
+  alata_regular
 }
 .btn .badge {
   position: relative;
@@ -5876,7 +5876,7 @@ button.close {
   bottom: 0;
   left: 0;
   z-index: 1050;
-  display: none;
+  alata_regular
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
   outline: 0;
@@ -6109,7 +6109,7 @@ button.close {
   top: 0;
   left: 0;
   z-index: 1060;
-  display: none;
+  alata_regular
   max-width: 276px;
   padding: 1px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -6247,7 +6247,7 @@ button.close {
 }
 .carousel-inner > .item {
   position: relative;
-  display: none;
+  alata_regular
   -webkit-transition: .6s ease-in-out left;
        -o-transition: .6s ease-in-out left;
           transition: .6s ease-in-out left;

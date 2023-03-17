@@ -33,4 +33,6 @@
     <string name="save_success">Message is saved in %1$s</string>
     <string name="my_files">My Files</string>
     <string name="context">Context</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
 </resources>

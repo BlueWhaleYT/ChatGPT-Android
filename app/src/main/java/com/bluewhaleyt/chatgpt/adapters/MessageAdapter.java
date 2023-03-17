@@ -26,6 +26,7 @@ import com.bluewhaleyt.chatgpt.R;
 import com.bluewhaleyt.chatgpt.databinding.DialogLayoutMarkdownViewBinding;
 import com.bluewhaleyt.chatgpt.databinding.DialogLayoutSaveMessageBinding;
 import com.bluewhaleyt.chatgpt.models.Message;
+import com.bluewhaleyt.chatgpt.utils.DateTimeUtil;
 import com.bluewhaleyt.chatgpt.utils.MarkedView;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
@@ -37,6 +38,7 @@ import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -165,10 +167,21 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     }
 
     private void displaySentTime(MessageViewHolder holder, Message message) {
+        var context = holder.itemView.getContext();
         long timeMillis = (long) message.getSentTime();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(timeMillis);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy - h:mm a");
+
+        var timeUtil = new DateTimeUtil(calendar, timeMillis);
+        var timePattern = " - h:mm a";
+        SimpleDateFormat dateFormat;
+        if (timeUtil.isToday()) {
+            dateFormat = new SimpleDateFormat("'" + context.getString(R.string.today) + "'" + timePattern);
+        } else if (timeUtil.isYesterday()) {
+            dateFormat = new SimpleDateFormat("'" + context.getString(R.string.yesterday) + "'" + timePattern);
+        } else {
+            dateFormat = new SimpleDateFormat("MMM dd, yyyy" + timePattern);
+        }
         String time = dateFormat.format(calendar.getTime());
         holder.tvTime.setText(time);
     }
