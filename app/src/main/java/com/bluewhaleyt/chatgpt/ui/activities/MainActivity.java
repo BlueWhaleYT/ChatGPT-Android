@@ -192,6 +192,11 @@ public class MainActivity extends BaseActivity {
             openAIClient.setMaxTokens(Double.parseDouble(PreferencesManager.getOpenAIMaxTokens()));
             openAIClient.setTemperature(Double.parseDouble(PreferencesManager.getOpenAITemperature()));
             openAIClient.setEcho(PreferencesManager.isOpenAIEcho());
+
+            // test
+            openAIClient.setImageAmount(1);
+            openAIClient.setImageSize("256x256");
+            openAIClient.setImageResponseFormat("url");
         }
     }
 
@@ -202,7 +207,7 @@ public class MainActivity extends BaseActivity {
             binding.etMessage.setText("");
             updateIsRequesting(true);
             try {
-                openAIClient.setPrompt(Message.getContext() + "\n" + userInput);
+                openAIClient.setPrompt(getPrompt(userInput));
                 openAIClient.generateResponse(new Callback() {
                     @Override
                     public void onFailure(@NonNull Call call, @NonNull IOException e) {
@@ -318,8 +323,22 @@ public class MainActivity extends BaseActivity {
             case OpenAIClient.GPT_3_5_TURBO:
                 url = OpenAIClient.CHAT_COMPLETION_URL;
                 break;
+            case OpenAIClient.DALL_E:
+                url = OpenAIClient.IMAGE_GENERATION_URL;
+                break;
         }
         return url;
+    }
+
+    private String getPrompt(String prompt) {
+        switch (openAIClient.getModel()) {
+            case OpenAIClient.TEXT_DAVINCI_003:
+            case OpenAIClient.GPT_3_5_TURBO:
+                prompt = Message.getContext() + "\n" + prompt;
+                break;
+            default: return prompt;
+        }
+        return prompt;
     }
 
     public void tellMeMore() {

@@ -3,5 +3,6 @@
     <string-array name="model">
         <item>@string/default_openai_model</item>
         <item>gpt-3.5-turbo</item>
+        <item>DALL-E</item>
     </string-array>
 </resources>

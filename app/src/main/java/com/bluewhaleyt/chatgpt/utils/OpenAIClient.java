@@ -23,9 +23,11 @@ public class OpenAIClient {
     private final MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
     public static final String TEXT_DAVINCI_003 = "text-davinci-003";
     public static final String GPT_3_5_TURBO = "gpt-3.5-turbo";
+    public static final String DALL_E = "DALL-E";
 
     public static final String COMPLETION_URL = "https://api.openai.com/v1/completions";
     public static final String CHAT_COMPLETION_URL = "https://api.openai.com/v1/chat/completions";
+    public static final String IMAGE_GENERATION_URL = "https://api.openai.com/v1/images/generations";
 
     private Context context;
     private OkHttpClient client;
@@ -36,7 +38,10 @@ public class OpenAIClient {
     private double maxTokens, temperature;
     private String apiKey , apiUrl, model, prompt;
     private boolean isMaxTokensEnabled, isEcho;
-    private JSONObject parameters;
+
+    // Image generation
+    private int numOfImg;
+    private String imgSize, imgResponseFormat;
 
     public OpenAIClient() {
         client = new OkHttpClient.Builder()
@@ -100,17 +105,21 @@ public class OpenAIClient {
 
     public void setEcho(boolean isEcho) { this.isEcho = isEcho; }
 
-    public void setParameters(JSONObject parameters) { this.parameters = parameters; }
+    public void setImageAmount(int numOfImg) { this.numOfImg = numOfImg; }
+
+    public void setImageSize(String imgSize) { this.imgSize = imgSize; }
+
+    public void setImageResponseFormat(String format) { this.imgResponseFormat = format; }
 
     public JSONObject getSettings() throws JSONException {
         var json = new JSONObject();
-        json.put("model", model);
-        if (isMaxTokensEnabled) json.put("max_tokens", maxTokens);
-        json.put("temperature", temperature);
 
         if (model.equals(TEXT_DAVINCI_003)) {
+            json.put("model", model);
             json.put("prompt", prompt);
+            json.put("temperature", temperature);
             json.put("echo", isEcho);
+            if (isMaxTokensEnabled) json.put("max_tokens", maxTokens);
         }
 
         else if (model.equals(GPT_3_5_TURBO)) {
@@ -119,8 +128,20 @@ public class OpenAIClient {
             jsonMessageObj.put("role", "user");
             jsonMessageObj.put("content", prompt);
             jsonArray.put(jsonMessageObj);
+
+            json.put("model", model);
             json.put("messages", jsonArray);
+            json.put("temperature", temperature);
+            if (isMaxTokensEnabled) json.put("max_tokens", maxTokens);
         }
+
+        else if (model.equals(DALL_E)) {
+            json.put("prompt", prompt);
+            json.put("n", numOfImg);
+            json.put("size", imgSize);
+            json.put("response_format", imgResponseFormat);
+        }
+
         return json;
     }
 
@@ -137,18 +158,30 @@ public class OpenAIClient {
 
     public String getResponse(String responseBody) throws JSONException {
         var jsonObject = new JSONObject(responseBody);
-        var jsonArray = jsonObject.getJSONArray("choices");
         String resultText = null;
         if (model.equals(TEXT_DAVINCI_003)) {
+            var jsonArray = jsonObject.getJSONArray("choices");
             resultText = jsonArray.getJSONObject(0).getString("text");
+            resultText.trim();
         }
 
         else if (model.equals(GPT_3_5_TURBO)) {
+            var jsonArray = jsonObject.getJSONArray("choices");
             var jsonMessageObj = jsonArray.getJSONObject(0).getJSONObject("message");
             resultText = jsonMessageObj.getString("content");
+            resultText.trim();
         }
 
-        return resultText.trim();
+        else if (model.equals(DALL_E)) {
+            var jsonArray = jsonObject.getJSONArray("data");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                var dataObj = jsonArray.getJSONObject(i);
+                resultText = dataObj.getString("url");
+                resultText = String.format("![](%s)", resultText);
+            }
+        }
+
+        return resultText;
     }
 
     public String getErrorResponse(String responseBody) throws JSONException {
