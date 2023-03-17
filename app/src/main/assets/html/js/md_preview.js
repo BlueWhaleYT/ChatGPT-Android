@@ -111,7 +111,6 @@ $(function() {
                 singleLine: true
             });
             hljs.initLangBlock(block);
-
             setCopyCodeButton();
         });
     };
