@@ -1,63 +1,63 @@
-$(function() {
+$(function () {
 
     var rend = new marked.Renderer();
 
     marked.setOptions({
         langPrefix: '',
-        highlight: function(code){
+        highlight: function (code) {
             return hljs.highlightAuto(code).value;
-        },
+        }
     });
 
-    rend.code = function(code, lang, escaped){
+    rend.code = function (code, lang, escaped) {
         var lineArray = code.split(/\r\n|\r|\n/);
         var len = 0;
-        if(lineArray == null){
+        if (lineArray == null) {
             len = code.length;
 
-        }else{
-            $.each(lineArray, function(index, val){
-                if(len < val.length){
+        } else {
+            $.each(lineArray, function (index, val) {
+                if (len < val.length) {
                     len = val.length;
                 }
             });
         }
 
         var code = code.replace(/&/g, '&amp;')
-                        .replace(/</g, '&lt;')
-                        .replace(/>/g, '&gt;')
-                        .replace(/"/g, '&quot;')
-                        .replace(/'/g, '&#39;');
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
 
-        if(!lang){
-            return '<pre><code style="'
-                + ' display: block; word-wrap: normal; overflow-x: scroll;'
-                + ' width: ' + len + 'rem; '
-                + ' -webkit-text-size-adjust: none;'
-                + '">'
-                + code
-                + '\n</code></pre>';
+        if (!lang) {
+            return '<pre><code style="' +
+                ' display: block; word-wrap: normal; overflow-x: scroll;' +
+                ' width: ' + len + 'rem; ' +
+                ' -webkit-text-size-adjust: none;' +
+                '">' +
+                code +
+                '</code></pre>';
         }
 
-        return '<pre><code class="'
-            + lang
-            + '" style="'
-            + ' display: block; word-wrap: normal; overflow-x: scroll;'
-            + ' width: ' + len + 'rem; '
-            + ' -webkit-text-size-adjust: none;'
-            + '">'
-            + code
-            + '\n</code></pre>';
+        return '<pre><code class="' +
+            lang +
+            '" style="' +
+            ' display: block; word-wrap: normal; overflow-x: scroll;' +
+            ' width: ' + len + 'rem; ' +
+            ' -webkit-text-size-adjust: none;' +
+            '">' +
+            code +
+            '</code></pre>';
     };
 
-    function escSub(text){
+    function escSub(text) {
         var result = text.match(/~+.*?~+/g);
-        if(result == null){
+        if (result == null) {
             return text;
         }
 
-        $.each(result, function(index, val){
-            if(val.lastIndexOf('~~', 0) === 0){
+        $.each(result, function (index, val) {
+            if (val.lastIndexOf('~~', 0) === 0) {
                 return true;
             }
             var escapedText = val.replace(/~/, '<sub>');
@@ -69,13 +69,13 @@ $(function() {
         return text;
     }
 
-    function escSup(text){
+    function escSup(text) {
         var result = text.match(/\^.*?\^/g);
-        if(result == null){
+        if (result == null) {
             return text;
         }
 
-        $.each(result, function(index, val){
+        $.each(result, function (index, val) {
             var escapedText = val.replace(/\^/, '<sup>');
             escapedText = escapedText.replace(/\^/, '</sup>');
             val = val.replace(/\^/g, '\\^');
@@ -86,9 +86,9 @@ $(function() {
         return text;
     }
 
-    preview = function setMarkdown(md_text, codeScrollDisable){
-        if(md_text == ""){
-          return false;
+    preview = function setMarkdown(md_text, codeScrollDisable) {
+        if (md_text == "") {
+            return false;
         }
 
         md_text = md_text.replace(/\\n/g, "\n");
@@ -97,15 +97,17 @@ $(function() {
 
         // markdown html
         var md_html;
-        if(codeScrollDisable){
+        if (codeScrollDisable) {
             md_html = marked(md_text);
-        }else{
-            md_html = marked(md_text, {renderer: rend});
+        } else {
+            md_html = marked(md_text, {
+                renderer: rend
+            });
         }
 
         $('#preview').html(md_html);
 
-        $('pre code').each(function(i, block){
+        $('pre code').each(function (i, block) {
             hljs.highlightBlock(block);
             hljs.lineNumbersBlock(block, {
                 singleLine: true
